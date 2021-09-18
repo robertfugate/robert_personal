@@ -28,7 +28,6 @@ const roombaPathing = (pathing = "empty") => {
 		var foundDirt = [];
 
 		var directions = textFileData[textFileData.length-1];
-
 		//Loop through all directions provided and move the Hoover accordingly checking for dirt
 		//at the end of each instruction
 		for(var i = 0; i < directions.length; i++){
@@ -48,7 +47,7 @@ const roombaPathing = (pathing = "empty") => {
 			//For N & E: confirm next move won't move outside upper bound (exclusive of room size)
 			var currentDirection = directions[i].toUpperCase();
 			if(currentDirection == 'N'){
-				if(currentPosition[1] + 1 < roomSize[1]){
+				if(currentPosition[1] + 1 < roomSize[1] && currentPosition[1] > -1){
 					currentPosition[1] = currentPosition[1] + 1
 				}
 				else{
@@ -57,7 +56,7 @@ const roombaPathing = (pathing = "empty") => {
 				
 			}
 			else if(currentDirection == 'S'){
-				if(currentPosition[1] - 1 >= 0){
+				if(currentPosition[1] - 1 >= 0 && currentPosition[1] < roomSize[1]){
 				currentPosition[1] = currentPosition[1] - 1
 			}
 			else{
@@ -65,7 +64,7 @@ const roombaPathing = (pathing = "empty") => {
 			}
 			}
 			else if(currentDirection == 'E'){
-				if(currentPosition[0] + 1 < roomSize[0]){
+				if(currentPosition[0] + 1 < roomSize[0] && currentPosition[1] > -1){
 					currentPosition[0] = currentPosition[0] + 1
 				}
 				else{
@@ -73,7 +72,7 @@ const roombaPathing = (pathing = "empty") => {
 				}
 			}
 			else if(currentDirection == 'W'){
-				if(currentPosition[0] - 1 >= 0){
+				if(currentPosition[0] - 1 >= 0 && currentPosition[0] < roomSize[0]){
 					currentPosition[0] = currentPosition[0] - 1
 				}
 				else{
